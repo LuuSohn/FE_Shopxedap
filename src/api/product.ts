@@ -13,7 +13,7 @@ const addProduct = (product: any) => {
   return instance.post("/products", product);
 };
 const updateProduct = (product: any) => {
-  return instance.put("/products/" + product.id, product);
+  return instance.put("/products/" + product._id, product);
 };
 export {
   getAllProduct,

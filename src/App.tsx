@@ -109,7 +109,6 @@ function App() {
         )
       ) {
         navigate("/admin/category/add");
-        
       } else {
         navigate("/admin/category");
       }
@@ -126,7 +125,7 @@ function App() {
 
   const onHandleRemoveCate = async (id: number | string) => {
     try {
-      alert("Bạn có chắc xóa hay ko")
+      alert("Bạn có chắc xóa hay ko");
       await deleteCategory(id);
       setCategories(categories.filter((category) => category._id !== id));
     } catch (error) {
@@ -144,7 +143,7 @@ function App() {
           setCategories(data.categories.data)
         );
         alert("Cập nhật thành công");
-        navigate("/admin/products");
+        navigate("/admin/category");
       })
       .catch((err) => {
         console.log("Error updating product:", err);
