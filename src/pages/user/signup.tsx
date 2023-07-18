@@ -64,10 +64,8 @@ const Signup = () => {
           <Input.Password />
         </Form.Item>
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit">
-            Đăng kí
-          </Button>
-          <Button type="primary" style={{ width: 100, marginLeft: 10 }}>
+          <Button htmlType="submit">Đăng kí</Button>
+          <Button style={{ width: 100, marginLeft: 10 }}>
             <Link to={"/signin"}>Đăng nhập</Link>
           </Button>
         </Form.Item>
