@@ -40,17 +40,19 @@ const ProductManagementPage = ({ products, onRemove }: Props) => {
       title: "Product image",
       dataIndex: "image",
       key: "image",
-    //   render: (record) => (
-
-    //     console.log(record),
-        
-    //     <img src={record.image} alt="Product" style={{ maxWidth: 100 }} />
-    //   ),
+     render: (_, data) => (
+        <img src={data?.image} width={"120px"} height={"100px"} alt="" />
+      ),
     },
     {
       title: "Product description",
       dataIndex: "description",
       key: "description",
+    },
+    {
+      title: "Category",
+      dataIndex: "categoryId",
+      key: "categoryId",
     },
     {
       title: "Action",
