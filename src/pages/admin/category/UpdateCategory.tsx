@@ -12,6 +12,10 @@ import { getOneCategory } from "../../../api/categories";
 const { Header, Content, Footer, Sider } = Layout;
 
 
+interface Icate {
+  ca: ICategory[],
+  onUpdate: (category: ICategory) => void
+}
 const UpdateCategoryPage = (props:any) => {
   const {
     token: { colorBgContainer },
@@ -21,22 +25,29 @@ const UpdateCategoryPage = (props:any) => {
     const navigate = useNavigate()
 
     const [category, setCategories] = useState<ICategory>() 
+    console.log(setCategories);
+    
     useEffect(() => {
       getOneCategory(id).then(({data}) => setCategories(data.category));
-    }, [])
+    }, [props])
+    useEffect(() => { 
+      setFields() 
+  }, [category])
     const [form] = Form.useForm();
 
-
-        form.setFieldsValue({ 
-            id: category?._id,
-            name: category?.name,
-        })
+    const setFields = () => {
+      form.setFieldsValue({ 
+          id: category?._id,
+          name: category?.name,
+          
+      })
+  }
 
     const onFinish = (values: any) => {
       // console.log(values);
       
         props.onUpdate(values);
-        // navigate('/admin/products')
+        navigate('/admin/category')
     };
   return (
     <Layout>

@@ -109,6 +109,7 @@ function App() {
         )
       ) {
         navigate("/admin/category/add");
+        
       } else {
         navigate("/admin/category");
       }
@@ -125,6 +126,7 @@ function App() {
 
   const onHandleRemoveCate = async (id: number | string) => {
     try {
+      alert("Bạn có chắc xóa hay ko")
       await deleteCategory(id);
       setCategories(categories.filter((category) => category._id !== id));
     } catch (error) {

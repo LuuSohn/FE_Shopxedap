@@ -34,7 +34,9 @@ const Signin = () => {
   };
 
   return (
-    <Form
+    <div className="" style={{marginTop:"40px"}}>
+            <h1 style={{textAlign:"center",marginBottom:"40px",fontSize:"35px",marginLeft:"125px"}}>Đăng Nhập</h1>
+        <Form
       //   form={form}
       name="basic"
       labelCol={{ span: 8 }}
@@ -46,17 +48,17 @@ const Signin = () => {
       autoComplete="off"
     >
       <Form.Item
-        label="Username"
+        label="Email"
         name="email"
-        rules={[{ required: true, message: "Please input your username!" }]}
+        rules={[{ required: true, message: "Vui lòng nhập Email!" }]}
       >
         <Input />
       </Form.Item>
 
       <Form.Item
-        label="Password"
+        label="Mật Khẩu"
         name="password"
-        rules={[{ required: true, message: "Please input your password!" }]}
+        rules={[{ required: true, message: "Vui lòng nhập mật khẩu!" }]}
       >
         <Input.Password />
       </Form.Item>
@@ -68,6 +70,7 @@ const Signin = () => {
         </Button>
       </Form.Item>
     </Form>
+    </div>
   );
 };
 

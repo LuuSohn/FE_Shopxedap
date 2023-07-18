@@ -23,48 +23,49 @@ const Signup = () => {
   };
 
   return (
-    <div>
+    <div className="" style={{marginTop:"40px"}}>
+        <h1 style={{textAlign:"center",marginBottom:"40px",fontSize:"35px",marginLeft:"125px"}}>Đăng Ký Tài Khoản</h1>
       <Form
         name="basic"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
-        style={{ maxWidth: 800, margin: "0 auto" }}
+        style={{ maxWidth: 600, margin: "0 auto" }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
         autoComplete="off"
       >
         <Form.Item
-          label="Username"
+          label="Tên Người dùng"
           name="name"
-          rules={[{ required: true, message: "Please input your username!" }]}
+          rules={[{ required: true, message: "Vui lòng nhập Tên người dùng!" }]}
         >
           <Input />
         </Form.Item>
         <Form.Item
-          name="email"
+          name="Email"
           label="Email"
-          rules={[{ required: true, message: "Please input your Email!" }]}
+          rules={[{ required: true, message: "Vui lòng nhập Email!" }]}
         >
           <Input />
         </Form.Item>
         <Form.Item
-          label="Password"
+          label="Mật Khẩu"
           name="password"
-          rules={[{ required: true, message: "Please input your password!" }]}
+          rules={[{ required: true, message: "Vui lòng nhập mật khẩu!" }]}
         >
           <Input.Password />
         </Form.Item>
         <Form.Item
-          label="Password"
+          label="Nhập lại mật khẩu"
           name="confirmPassword"
           rules={[
-            { required: true, message: "Please input your confirmPassword!" },
+            { required: true, message: "Vui lòng nhập lại mật khẩu!" },
           ]}
         >
           <Input.Password />
         </Form.Item>
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button htmlType="submit">Đăng kí</Button>
+          <Button  htmlType="submit">Đăng kí</Button>
           <Button style={{ width: 100, marginLeft: 10 }}>
             <Link to={"/signin"}>Đăng nhập</Link>
           </Button>
