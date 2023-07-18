@@ -142,7 +142,7 @@ function App() {
           setCategories(data.categories.data)
         );
         alert("Cập nhật thành công");
-        navigate("/admin/products");
+        navigate("/admin/category");
       })
       .catch((err) => {
         console.log("Error updating product:", err);

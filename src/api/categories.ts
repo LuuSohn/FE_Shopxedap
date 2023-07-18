@@ -13,5 +13,5 @@ export const addCategory = (categories: any) => {
   return instance.post("/categories/", categories);
 };
 export const updateCategory = (categories: any) => {
-  return instance.put("/categories/" + categories.id, categories);
+  return instance.put("/categories/" + categories._id, categories);
 };
