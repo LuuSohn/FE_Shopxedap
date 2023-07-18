@@ -1,13 +1,13 @@
 import React, { useState ,useEffect} from "react";
 import { Space, Table, Tag, Button } from "antd";
-import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import { DashboardOutlined, AppstoreOutlined, ShoppingCartOutlined,ShoppingOutlined, UserOutlined, PhoneOutlined } from '@ant-design/icons';
 import { Layout, Menu, theme } from 'antd';
 import { Link } from 'react-router-dom';
 import { Checkbox, Form, Input } from 'antd';
 import { Upload } from 'antd';
 import { useNavigate, useParams } from 'react-router-dom'
-import { IProduct } from '../../interface/products'
-import { getOneProduct } from "../../api/product";
+import { IProduct } from "../../../interface/products";
+import { getOneProduct } from "../../../api/product";
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -46,35 +46,52 @@ const UpdateProductPage = (props:any) => {
   return (
     <Layout>
           <Sider
-            breakpoint="lg"
-            collapsedWidth="0"
-            onBreakpoint={(broken) => {
-              console.log(broken);
-            }}
-            onCollapse={(collapsed, type) => {
-              console.log(collapsed, type);
-            }}
-          >
-            <div className="logo">
-              <img src="" alt="" />
-              </div>
-            <Menu
-              theme="dark"mode="inline"
-              defaultSelectedKeys={['4']}
-              
+                style={{ background: 'white', }}
+                breakpoint="lg"
+                collapsedWidth="0"
+                onBreakpoint={(broken) => {
+                  console.log(broken);
+                }}
+                onCollapse={(collapsed, type) => {
+                  console.log(collapsed, type);
+                }}
               >
-              <Menu.Item>
-              <Link to ={'/admin'}>Dashboard</Link>
-            </Menu.Item>
-            
-            <Menu.Item>
-                <Link to={'/admin/category'}>Category</Link>
-              </Menu.Item>
-              <Menu.Item>
-              <Link to ={'/admin/products'}>Products</Link>
-            </Menu.Item>
-            </Menu>
-          </Sider>
+                <div className="logo">
+                  <img src="" alt="" />
+                </div>
+                
+                <Menu
+                  style={{ background: 'white', color: 'black',marginTop:'50px' }}
+                  theme="dark"
+                  mode="inline"
+                  defaultSelectedKeys={['4']}
+                >
+                  <Menu.Item key="dashboard" style={{marginBottom: "10px",}} icon={<DashboardOutlined />}>
+                    <Link to="/admin">Dashboard</Link>
+                  </Menu.Item>
+                
+                  <Menu.Item key="category" style={{marginBottom: "10px"}} icon={<AppstoreOutlined />}>
+                    <Link to="/admin/category">Danh Mục</Link>
+                  </Menu.Item>
+                
+                  <Menu.Item key="products" style={{marginBottom: "10px"}} icon={<ShoppingCartOutlined />}>
+                    <Link to="/admin/products">Sản phẩm</Link>
+                  </Menu.Item>
+                
+                  <Menu.Item key="user" style={{marginBottom: "10px"}} icon={<UserOutlined />}>
+                    <Link to="/admin/user">Tài Khoản</Link>
+                  </Menu.Item>
+                
+                  <Menu.Item key="order" style={{marginBottom: "10px"}} icon={<ShoppingOutlined />}>
+                    <Link to="/admin/order">Giỏ hàng</Link>
+                  </Menu.Item>
+                
+                  <Menu.Item key="contact" style={{marginBottom: "10px"}} icon={<PhoneOutlined />}>
+                    <Link to="/admin/contact">Hỗ Trợ</Link>
+                  </Menu.Item>
+                
+                </Menu>
+      </Sider>
           <Layout>
             <Header style={{ padding: 0, background: colorBgContainer }} />
             <Content style={{ margin: '24px 16px 0',textAlign:"center" }}>
