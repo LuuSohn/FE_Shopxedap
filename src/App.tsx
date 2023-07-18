@@ -49,7 +49,7 @@ function App() {
           "Thêm sản phẩm thành công! Bạn có muốn thêm sản phẩm khác?"
         )
       ) {
-        navigate("/admin/products/add");
+        navigate("/admin/products");
       } else {
         navigate("/admin/products");
       }
