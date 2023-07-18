@@ -196,7 +196,7 @@ const ProductDetail = ({ category }: Props) => {
               <div className=" gap-4 md:grid-cols-1">
                 <img
                   alt="Les Paul"
-                  src={product.image.url}
+                  src={product.image}
                   className="aspect-square w-full rounded-xl object-cover"
                 />
               </div>

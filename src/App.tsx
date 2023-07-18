@@ -4,18 +4,28 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Signin from "./pages/user/signin";
 
 import Signup from "./pages/user/signup";
-import { addProduct, deleteProduct, getAllProduct,updateProduct } from "./api/product";
+import {
+  addProduct,
+  deleteProduct,
+  getAllProduct,
+  updateProduct,
+} from "./api/product";
 
 import { IProduct } from "./interface/products";
 import { ICategory } from "./interface/categories";
-import { addCategory, deleteCategory, getAllCategory, updateCategory } from "./api/categories";
+import {
+  addCategory,
+  deleteCategory,
+  getAllCategory,
+  updateCategory,
+} from "./api/categories";
 import HomePage from "./pages/user/HomePage";
 import ProductDetail from "./pages/user/prodoductsDetail";
 import ProductListByCategory from "./pages/user/productByCate";
 
-import AddProductPage from './pages/admin/product/AddProduct'
-import ProductManagementPage from './pages/admin/product/ProductManagement'
-import UpdateProductPage from './pages/admin/product/UpdateProduct'
+import AddProductPage from "./pages/admin/product/AddProduct";
+import ProductManagementPage from "./pages/admin/product/ProductManagement";
+import UpdateProductPage from "./pages/admin/product/UpdateProduct";
 import CategoryManagementPage from "./pages/admin/category/CategoryManagement";
 import AddCategoryPage from "./pages/admin/category/AddCategory";
 import UpdateCategoryPage from "./pages/admin/category/UpdateCategory";
@@ -24,11 +34,7 @@ function App() {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    (async () => {
-      const { data } = await getAllProduct();
-      // console.log(data.products.data);
-      setProducts(data.products.data.data);
-    })();
+    getAllProduct().then(({ data }) => setProducts(data.products.data));
   }, []);
   const onHandleRemove = async (id: number | string) => {
     try {
@@ -67,30 +73,21 @@ function App() {
       }
     }
   };
-  
-  useEffect(() => {
-    getAllProduct().then(({ data }) => setProducts(data.products.data))
-  }, [])
-  // console.log(products);
-  // return 
+
   const onHandleUpdate = (product: IProduct) => {
     console.log(product);
-    
-    updateProduct(product)
-      .then(() => {
-        getAllProduct().then(({ data }) => setProducts(data.products.data));
-        alert("Cập nhật thành công")
-        navigate("/admin/products")
-      })
-      
+
+    updateProduct(product).then(() => {
+      getAllProduct().then(({ data }) => setProducts(data.products.data));
+      alert("Cập nhật thành công");
+      navigate("/admin/products");
+    });
   };
-
-
 
   /// Category
   const [categories, setCategories] = useState([]);
   // console.log(categories);
-  
+
   useEffect(() => {
     (async () => {
       const { data } = await getAllCategory();
@@ -98,7 +95,6 @@ function App() {
       setCategories(data.categories.data);
     })();
   }, []);
-
 
   const onHandleAddCate = async (category: ICategory[]) => {
     try {
@@ -127,7 +123,6 @@ function App() {
     }
   };
 
-
   const onHandleRemoveCate = async (id: number | string) => {
     try {
       await deleteCategory(id);
@@ -140,16 +135,17 @@ function App() {
     }
   };
 
-
   const onHandleUpdateCate = (category: ICategory) => {
     updateCategory(category)
       .then(() => {
-        getAllCategory().then(({ data }) => setCategories(data.categories.data));
-        alert("Cập nhật thành công")
-        navigate("/admin/products")
+        getAllCategory().then(({ data }) =>
+          setCategories(data.categories.data)
+        );
+        alert("Cập nhật thành công");
+        navigate("/admin/products");
       })
       .catch((err) => {
-        console.log('Error updating product:', err);
+        console.log("Error updating product:", err);
       });
   };
   return (
@@ -166,30 +162,63 @@ function App() {
             path="products/:id"
             element={<ProductDetail category={categories} />}
           ></Route>
-          <Route
+          {/* <Route
             path="category/:id"
             element={<ProductListByCategory />}
-          ></Route>
+          ></Route> */}
 
-
-          <Route path='/admin'>
-          <Route path='products'>
-            <Route index element={<ProductManagementPage products={products} onRemove={onHandleRemove} />} />
-            <Route path='add' element={<AddProductPage onAdd={onHandleAdd} />} />
-            <Route path=':id/update' element={<UpdateProductPage onUpdate={onHandleUpdate} products={products} />} />
-          </Route>
-          <Route path='category'>
-            <Route index element={<CategoryManagementPage categories={categories} onRemove={onHandleRemoveCate} />} />
-            <Route path='add' element={<AddCategoryPage onAdd={onHandleAddCate} />} />
-            <Route path=':id/update' element={<UpdateCategoryPage onUpdate={onHandleUpdateCate} categories={categories} />} />
+          <Route path="/admin">
+            <Route path="products">
+              <Route
+                index
+                element={
+                  <ProductManagementPage
+                    products={products}
+                    onRemove={onHandleRemove}
+                  />
+                }
+              />
+              <Route
+                path="add"
+                element={<AddProductPage onAdd={onHandleAdd} />}
+              />
+              <Route
+                path=":id/update"
+                element={
+                  <UpdateProductPage
+                    onUpdate={onHandleUpdate}
+                    products={products}
+                  />
+                }
+              />
+            </Route>
+            <Route path="category">
+              <Route
+                index
+                element={
+                  <CategoryManagementPage
+                    categories={categories}
+                    onRemove={onHandleRemoveCate}
+                  />
+                }
+              />
+              <Route
+                path="add"
+                element={<AddCategoryPage onAdd={onHandleAddCate} />}
+              />
+              <Route
+                path=":id/update"
+                element={
+                  <UpdateCategoryPage
+                    onUpdate={onHandleUpdateCate}
+                    categories={categories}
+                  />
+                }
+              />
+            </Route>
           </Route>
         </Route>
-        </Route>
-
-
-        
       </Routes>
-
     </div>
   );
 }

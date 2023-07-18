@@ -54,6 +54,18 @@ const ProductPage = ({ products, category }: ProductPageProps) => {
   const handleToggleList = () => {
     setShowList(!showList);
   };
+  const renderAdminButton = () => {
+    if (role === "admin") {
+      return (
+        <div>
+          <Button style={{ width: 95 }}>
+            <Link to="/admin/products">Admin</Link>
+          </Button>
+          <br />
+        </div>
+      );
+    }
+  };
   return (
     <Layout>
       <div>
@@ -220,32 +232,14 @@ const ProductPage = ({ products, category }: ProductPageProps) => {
         Xin Chào: {user}
       </Divider>
 
-      <div
-        style={{
-          marginLeft: 16,
+      <div style={{ marginLeft: 16, display: "flex" }}>
+        {renderAdminButton()}
 
-          display: "flex",
-        }}
-      >
-        {role === "admin" && (
+        {(role === "admin" || role === "member") && (
           <div>
-            <Button
-              style={{
-                width: 95,
-              }}
-            >
-              <Link to="/admin/products">Admin </Link>
-            </Button>
-            <br />
+            <Button onClick={handleLogout}>Đăng xuất</Button>
           </div>
         )}
-
-        {role === "admin" ||
-          (role === "member" && (
-            <div>
-              <Button onClick={handleLogout}>Đăng xuất</Button>
-            </div>
-          ))}
       </div>
 
       <Layout style={{ minHeight: "100vh" }}>
@@ -265,7 +259,7 @@ const ProductPage = ({ products, category }: ProductPageProps) => {
                 <Card title={item.name}>
                   <img
                     style={{ height: 150, maxWidth: 200, margin: "0 auto" }}
-                    src={item.image.url}
+                    src={item.image}
                     alt=""
                   />
                   <p>Giá: {item.price}</p>
