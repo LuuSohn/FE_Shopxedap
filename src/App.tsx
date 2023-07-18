@@ -12,6 +12,10 @@ import HomePage from "./pages/user/HomePage";
 import ProductDetail from "./pages/user/prodoductsDetail";
 import ProductListByCategory from "./pages/user/productByCate";
 
+import AddProductPage from './pages/admin/AddProduct'
+import ProductManagementPage from './pages/admin/ProductManagement'
+import UpdateProductPage from './pages/admin/UpdateProduct'
+
 function App() {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
@@ -19,7 +23,7 @@ function App() {
     (async () => {
       const { data } = await getAllProduct();
       // console.log(data.products.data);
-      setProducts(data.products.data);
+      setProducts(data.products.data.data);
     })();
   }, []);
   const onHandleRemove = async (id: number | string) => {
@@ -38,7 +42,7 @@ function App() {
       const { data } = await addProduct(product);
       console.log(data);
 
-      setProducts(data.product);
+      setProducts(data.product.data);
 
       if (
         window.confirm(
@@ -67,6 +71,30 @@ function App() {
       setCategories(data.categories.data);
     })();
   }, []);
+
+
+
+  useEffect(() => {
+    getAllProduct().then(({ data }) => setProducts(data.products.data))
+  }, [])
+  // console.log(products);
+  // return 
+  
+  
+  const onHandleUpdate = (product: IProduct) => {
+    console.log(product);
+    
+    updateProduct(product)
+      .then(() => {
+        getAllProduct().then(({ data }) => setProducts(data.products.data));
+        alert("Cập nhật thành công")
+        navigate("/admin/products")
+      })
+      
+  };
+
+
+
   return (
     <div className="App ">
       <Routes>
@@ -85,8 +113,21 @@ function App() {
             path="category/:id"
             element={<ProductListByCategory />}
           ></Route>
+
+
+          <Route path='/admin'>
+          <Route path='products'>
+            <Route index element={<ProductManagementPage products={products} onRemove={onHandleRemove} />} />
+            <Route path='add' element={<AddProductPage onAdd={onHandleAdd} />} />
+            <Route path=':id/update' element={<UpdateProductPage onUpdate={onHandleUpdate} products={products} />} />
+          </Route>
         </Route>
+        </Route>
+
+
+        
       </Routes>
+
     </div>
   );
 }
