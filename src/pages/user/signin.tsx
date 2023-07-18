@@ -34,40 +34,52 @@ const Signin = () => {
   };
 
   return (
-    <Form
-      //   form={form}
-      name="basic"
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
-      style={{ maxWidth: 700, margin: "auto" }}
-      initialValues={{ remember: true }}
-      onFinish={onSubmit}
-      //   onFinishFailed={onFinishFailed}
-      autoComplete="off"
-    >
-      <Form.Item
-        label="Username"
-        name="email"
-        rules={[{ required: true, message: "Please input your username!" }]}
+    <div className="" style={{ marginTop: "40px" }}>
+      <h1
+        style={{
+          textAlign: "center",
+          marginBottom: "40px",
+          fontSize: "35px",
+          marginLeft: "125px",
+        }}
       >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[{ required: true, message: "Please input your password!" }]}
+        Đăng Nhập
+      </h1>
+      <Form
+        //   form={form}
+        name="basic"
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        style={{ maxWidth: 700, margin: "auto" }}
+        initialValues={{ remember: true }}
+        onFinish={onSubmit}
+        //   onFinishFailed={onFinishFailed}
+        autoComplete="off"
       >
-        <Input.Password />
-      </Form.Item>
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[{ required: true, message: "Vui lòng nhập Email!" }]}
+        >
+          <Input />
+        </Form.Item>
 
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button htmlType="submit">Đăng nhập</Button>
-        <Button style={{ width: 100, marginLeft: 10 }}>
-          <Link to={"/signup"}>Đăng ký</Link>
-        </Button>
-      </Form.Item>
-    </Form>
+        <Form.Item
+          label="Mật Khẩu"
+          name="password"
+          rules={[{ required: true, message: "Vui lòng nhập mật khẩu!" }]}
+        >
+          <Input.Password />
+        </Form.Item>
+
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+          <Button htmlType="submit">Đăng nhập</Button>
+          <Button style={{ width: 100, marginLeft: 10 }}>
+            <Link to={"/signup"}>Đăng ký</Link>
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
   );
 };
 
