@@ -34,6 +34,9 @@ function App() {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   useEffect(() => {
+
+    // product
+
     getAllProduct().then(({ data }) => setProducts(data.products.data));
   }, []);
   const onHandleRemove = async (id: number | string) => {
@@ -63,6 +66,7 @@ function App() {
         window.location.reload();
       } else {
         navigate("/admin/products");
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);
@@ -84,6 +88,8 @@ function App() {
       navigate("/admin/products");
     });
   };
+
+
 
   /// Category
   const [categories, setCategories] = useState([]);

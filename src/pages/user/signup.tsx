@@ -42,8 +42,8 @@ const Signup = () => {
           <Input />
         </Form.Item>
         <Form.Item
-          name="Email"
-          label="Email"
+          name="email"
+          label="email"
           rules={[{ required: true, message: "Vui lòng nhập Email!" }]}
         >
           <Input />

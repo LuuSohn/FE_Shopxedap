@@ -322,7 +322,7 @@ const ProductDetail = ({ category }: Props) => {
                     </div>
                   </fieldset>
 
-                  <fieldset className="mt-4">
+                  {/* <fieldset className="mt-4">
                     <legend className="mb-1 text-sm font-medium">Size</legend>
 
                     <div className="flex flex-wrap gap-1">
@@ -391,7 +391,7 @@ const ProductDetail = ({ category }: Props) => {
                         </span>
                       </label>
                     </div>
-                  </fieldset>
+                  </fieldset> */}
 
                   <div className="mt-8 flex gap-4">
                     <div>
