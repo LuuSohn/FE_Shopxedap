@@ -60,6 +60,7 @@ function App() {
         )
       ) {
         navigate("/admin/products");
+        window.location.reload();
       } else {
         navigate("/admin/products");
       }
